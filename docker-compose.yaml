@@ -17,6 +17,7 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ./crypto-config/peerOrganizations/fredrick.coderschool.vn/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./fabric-ca-server-config.yaml:/etc/hyperledger/fabric-ca-server/fabric-ca-server-config.yaml
     container_name: ca.fredrick.coderschool.vn
 
   ca.alice.coderschool.vn:
@@ -34,6 +35,7 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ./crypto-config/peerOrganizations/alice.coderschool.vn/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./fabric-ca-server-config.yaml:/etc/hyperledger/fabric-ca-server/fabric-ca-server-config.yaml
     container_name: ca.alice.coderschool.vn
 
   ca.bob.coderschool.vn:
@@ -51,6 +53,7 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ./crypto-config/peerOrganizations/bob.coderschool.vn/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./fabric-ca-server-config.yaml:/etc/hyperledger/fabric-ca-server/fabric-ca-server-config.yaml
     container_name: ca.bob.coderschool.vn
 
   orderer.example.com:
