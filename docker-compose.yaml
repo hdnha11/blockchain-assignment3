@@ -1,0 +1,130 @@
+version: '2'
+
+services:
+
+  ca.fredrick.coderschool.vn:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-fredrick
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.fredrick.coderschool.vn-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.fredrick.coderschool.vn-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/fredrick.coderschool.vn/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca.fredrick.coderschool.vn
+
+  ca.alice.coderschool.vn:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-alice
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.alice.coderschool.vn-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.alice.coderschool.vn-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
+    ports:
+      - "8054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/alice.coderschool.vn/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca.alice.coderschool.vn
+
+  ca.bob.coderschool.vn:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-bob
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.bob.coderschool.vn-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.bob.coderschool.vn-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/key.pem
+    ports:
+      - "9054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/bob.coderschool.vn/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca.bob.coderschool.vn
+
+  orderer.example.com:
+    container_name: orderer.example.com
+    image: hyperledger/fabric-orderer
+    environment:
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerFredrick/tls/ca.crt, /etc/hyperledger/crypto/peerAlice/tls/ca.crt, /etc/hyperledger/crypto/peerBob/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+    command: orderer
+    ports:
+      - 7050:7050
+    volumes:
+        - ./channel-artifacts:/etc/hyperledger/configtx
+        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/:/etc/hyperledger/crypto/orderer
+        - ./crypto-config/peerOrganizations/fredrick.coderschool.vn/peers/peer0.fredrick.coderschool.vn/:/etc/hyperledger/crypto/peerFredrick
+        - ./crypto-config/peerOrganizations/alice.coderschool.vn/peers/peer0.alice.coderschool.vn/:/etc/hyperledger/crypto/peerAlice
+        - ./crypto-config/peerOrganizations/bob.coderschool.vn/peers/peer0.bob.coderschool.vn/:/etc/hyperledger/crypto/peerBob
+
+  peer0.fredrick.coderschool.vn:
+    container_name: peer0.fredrick.coderschool.vn
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.fredrick.coderschool.vn
+      - CORE_PEER_LOCALMSPID=FredrickMSP
+      - CORE_PEER_ADDRESS=peer0.fredrick.coderschool.vn:7051
+    ports:
+      - 7051:7051
+      - 7053:7053
+    volumes:
+        - ./crypto-config/peerOrganizations/fredrick.coderschool.vn/peers/peer0.fredrick.coderschool.vn/:/etc/hyperledger/crypto/peer
+    depends_on:
+      - orderer.example.com
+
+  peer0.alice.coderschool.vn:
+    container_name: peer0.alice.coderschool.vn
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.alice.coderschool.vn
+      - CORE_PEER_LOCALMSPID=AliceMSP
+      - CORE_PEER_ADDRESS=peer0.alice.coderschool.vn:7051
+    ports:
+      - 8051:7051
+      - 8053:7053
+    volumes:
+        - ./crypto-config/peerOrganizations/alice.coderschool.vn/peers/peer0.alice.coderschool.vn/:/etc/hyperledger/crypto/peer
+    depends_on:
+      - orderer.example.com
+
+  peer0.bob.coderschool.vn:
+    container_name: peer0.bob.coderschool.vn
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.bob.coderschool.vn
+      - CORE_PEER_LOCALMSPID=BobMSP
+      - CORE_PEER_ADDRESS=peer0.bob.coderschool.vn:7051
+    ports:
+      - 8056:7051
+      - 8058:7053
+    volumes:
+        - ./crypto-config/peerOrganizations/bob.coderschool.vn/peers/peer0.bob.coderschool.vn/:/etc/hyperledger/crypto/peer
+    depends_on:
+      - orderer.example.com
