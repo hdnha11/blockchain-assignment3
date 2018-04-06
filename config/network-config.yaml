@@ -400,7 +400,7 @@ certificateAuthorities:
     caName: ca-fredrick
 
   ca-alice:
-    url: https://localhost:7054
+    url: https://localhost:8054
     # the properties specified under this object are passed to the 'http' client verbatim when
     # making the request to the Fabric-CA server
     httpOptions:
@@ -417,7 +417,7 @@ certificateAuthorities:
     caName: ca-alice
 
   ca-bob:
-    url: https://localhost:7054
+    url: https://localhost:9054
     # the properties specified under this object are passed to the 'http' client verbatim when
     # making the request to the Fabric-CA server
     httpOptions:

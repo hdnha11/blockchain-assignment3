@@ -2,3 +2,5 @@ tag*
 crypto-config
 channel-artifacts/*.block
 channel-artifacts/*.tx
+fabric-client-kv-*
+node_modules
