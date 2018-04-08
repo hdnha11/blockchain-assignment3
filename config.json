@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": "4000",
-  "jwt-expiretime": "36000",
+  "jwt-expiretime": "604800",
   "chaincode-src-path": "../chaincode",
   "admins": [
     {

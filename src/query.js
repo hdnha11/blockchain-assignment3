@@ -31,26 +31,21 @@ const queryChaincode = async (
 
     // send query
     const request = {
-      targets: [peer], //queryByChaincode allows for multiple targets
+      targets: [peer], // queryByChaincode allows for multiple targets
       chaincodeId: chaincodeName,
       fcn,
       args,
     };
     const responsePayloads = await channel.queryByChaincode(request);
     if (responsePayloads) {
-      for (let i = 0; i < responsePayloads.length; i++) {
-        logger.info(
-          `${args[0]} now has ${responsePayloads[i].toString(
-            'utf8',
-          )} after the move`,
-        );
-      }
-      return `${args[0]} now has ${responsePayloads[i].toString(
-        'utf8',
-      )} after the move`;
+      const [response] = responsePayloads.map(payload =>
+        payload.toString('utf8'),
+      );
+      logger.info(response);
+      return JSON.parse(response);
     } else {
       logger.error('responsePayloads is null');
-      return 'responsePayloads is null';
+      return null;
     }
   } catch (error) {
     logger.error(

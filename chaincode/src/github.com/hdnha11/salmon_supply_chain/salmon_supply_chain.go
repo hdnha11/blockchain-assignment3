@@ -186,17 +186,12 @@ func queryAllSalmon(stub shim.ChaincodeStubInterface) peer.Response {
 		}
 
 		if first != true {
-			first = false
 			buffers.WriteString(", ")
 		}
 
-		buffers.WriteString("{")
-		buffers.WriteString("\"Key\": \"")
-		buffers.WriteString(queryResponse.GetKey())
-		buffers.WriteString("\", ")
-		buffers.WriteString("\"Record\": ")
 		buffers.WriteString(string(queryResponse.GetValue()))
-		buffers.WriteString("}")
+
+		first = false
 	}
 	buffers.WriteString("]")
 

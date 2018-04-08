@@ -208,7 +208,7 @@ app.post('/chaincodes', async (req, res) => {
       req.user.username,
       req.user.orgName,
     );
-    res.send(message);
+    res.json(message);
   } catch (ex) {
     res.status(500).json({error: ex.toString()});
   }
@@ -264,8 +264,109 @@ app.post('/channels/:channelName/chaincodes', async (req, res) => {
       req.user.username,
       req.user.orgName,
     );
-    res.send(message);
+    res.json(message);
   } catch (ex) {
     res.status(500).json({error: ex.toString()});
   }
 });
+
+// Invoke transaction on chaincode on target peers
+app.post(
+  '/channels/:channelName/chaincodes/:chaincodeName',
+  async (req, res) => {
+    logger.debug('INVOKE ON CHAINCODE');
+    const peers = req.body.peers;
+    const chaincodeName = req.params.chaincodeName;
+    const channelName = req.params.channelName;
+    const fcn = req.body.fcn;
+    const args = req.body.args;
+    logger.debug(`channelName: ${channelName}`);
+    logger.debug(`chaincodeName: ${chaincodeName}`);
+    logger.debug(`fcn: ${fcn}`);
+    logger.debug(`args: ${args}`);
+    if (!chaincodeName) {
+      res.status(400).json({error: 'Missing chaincodeName'});
+      return;
+    }
+    if (!channelName) {
+      res.status(400).json({error: 'Missing channelName'});
+      return;
+    }
+    if (!fcn) {
+      res.status(400).json({error: 'Missing fcn'});
+      return;
+    }
+    if (!args) {
+      res.status(400).json({error: 'Missing args'});
+      return;
+    }
+
+    try {
+      const message = await invokeChaincode(
+        peers,
+        channelName,
+        chaincodeName,
+        fcn,
+        args,
+        req.user.username,
+        req.user.orgName,
+      );
+      res.json(message);
+    } catch (ex) {
+      res.status(500).json({error: ex.toString()});
+    }
+  },
+);
+
+// Query on chaincode on target peers
+app.get(
+  '/channels/:channelName/chaincodes/:chaincodeName',
+  async (req, res) => {
+    logger.debug('QUERY BY CHAINCODE');
+    const channelName = req.params.channelName;
+    const chaincodeName = req.params.chaincodeName;
+    let args = req.query.args;
+    const fcn = req.query.fcn;
+    const peer = req.query.peer;
+
+    logger.debug(`channelName: ${channelName}`);
+    logger.debug(`chaincodeName: ${chaincodeName}`);
+    logger.debug(`fcn: ${fcn}`);
+    logger.debug(`args: ${args}`);
+
+    if (!chaincodeName) {
+      res.status(400).json({error: 'Missing chaincodeName'});
+      return;
+    }
+    if (!channelName) {
+      res.status(400).json({error: 'Missing channelName'});
+      return;
+    }
+    if (!fcn) {
+      res.status(400).json({error: 'Missing fcn'});
+      return;
+    }
+    if (!args) {
+      res.status(400).json({error: 'Missing args'});
+      return;
+    }
+    args = args.replace(/'/g, '"');
+    args = JSON.parse(args);
+    logger.debug(args);
+
+    try {
+      const message = await query.queryChaincode(
+        peer,
+        channelName,
+        chaincodeName,
+        args,
+        fcn,
+        req.user.username,
+        req.user.orgName,
+      );
+      res.json(message);
+    } catch (ex) {
+      res.status(500).json({error: ex.toString()});
+    }
+  },
+);
