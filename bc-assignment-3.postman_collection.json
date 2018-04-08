@@ -1,0 +1,818 @@
+{
+	"info": {
+		"_postman_id": "115ddb3f-8752-4598-8900-1d5413bee8e5",
+		"name": "bc-assignment-3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Registered User1@Fredrick",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:4000/users?username=user1&orgName=fredrick",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user1"
+						},
+						{
+							"key": "orgName",
+							"value": "fredrick"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Registered User1@Alice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:4000/users?username=user1&orgName=alice",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user1"
+						},
+						{
+							"key": "orgName",
+							"value": "alice"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Registered User1@Bob",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:4000/users?username=user1&orgName=bob",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user1"
+						},
+						{
+							"key": "orgName",
+							"value": "bob"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create channel 'transfers'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"channelName\": \"transfers\",\n  \"channelConfigPath\": \"../channel-artifacts/transfers.tx\"\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create channel 'fredrick-alice'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"channelName\": \"fredrick-alice\",\n  \"channelConfigPath\": \"../channel-artifacts/fredrick-alice.tx\"\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create channel 'fredrick-bob'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"channelName\": \"fredrick-bob\",\n  \"channelConfigPath\": \"../channel-artifacts/fredrick-bob.tx\"\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Fredrick peers to channel 'transfers'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"peers\": [\"peer0.fredrick.coderschool.vn\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/transfers/peers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"transfers",
+						"peers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Alice peers to channel 'transfers'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTYsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiYWxpY2UiLCJpYXQiOjE1MjMyMDc5OTZ9.Y9DoXxonXiSROV3qAryZUCwZn8HY5PV67sQK_viAUxU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"peers\": [\"peer0.alice.coderschool.vn\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/transfers/peers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"transfers",
+						"peers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Bob peers to channel 'transfers'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTgsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiYm9iIiwiaWF0IjoxNTIzMjA3OTk4fQ.JMxc3Vwk5ZDmryRqnDN35UUHoaJNGUY7z0lQNr38tjA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"peers\": [\"peer0.bob.coderschool.vn\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/transfers/peers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"transfers",
+						"peers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Fredrick peers to channel 'fredrick-alice'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"peers\": [\"peer0.fredrick.coderschool.vn\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/fredrick-alice/peers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"fredrick-alice",
+						"peers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Alice peers to channel 'fredrick-alice'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTYsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiYWxpY2UiLCJpYXQiOjE1MjMyMDc5OTZ9.Y9DoXxonXiSROV3qAryZUCwZn8HY5PV67sQK_viAUxU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"peers\": [\"peer0.alice.coderschool.vn\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/fredrick-alice/peers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"fredrick-alice",
+						"peers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Fredrick peers to channel 'fredrick-bob'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"peers\": [\"peer0.fredrick.coderschool.vn\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/fredrick-bob/peers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"fredrick-bob",
+						"peers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Bob peers to channel 'fredrick-bob'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTgsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiYm9iIiwiaWF0IjoxNTIzMjA3OTk4fQ.JMxc3Vwk5ZDmryRqnDN35UUHoaJNGUY7z0lQNr38tjA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"peers\": [\"peer0.bob.coderschool.vn\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/fredrick-bob/peers",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"fredrick-bob",
+						"peers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Install chaincode on Fredrick peers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \t\"peers\": [\"peer0.fredrick.coderschool.vn\"],\n\t\"chaincodeName\": \"salmon_supply_chain\",\n\t\"chaincodePath\": \"github.com/hdnha11/salmon_supply_chain\",\n\t\"chaincodeType\": \"golang\",\n\t\"chaincodeVersion\": \"v0\"\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/chaincodes",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"chaincodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Install chaincode on Alice peers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTYsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiYWxpY2UiLCJpYXQiOjE1MjMyMDc5OTZ9.Y9DoXxonXiSROV3qAryZUCwZn8HY5PV67sQK_viAUxU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \t\"peers\": [\"peer0.alice.coderschool.vn\"],\n\t\"chaincodeName\": \"salmon_supply_chain\",\n\t\"chaincodePath\": \"github.com/hdnha11/salmon_supply_chain\",\n\t\"chaincodeType\": \"golang\",\n\t\"chaincodeVersion\": \"v0\"\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/chaincodes",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"chaincodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Install chaincode on Bob peers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTgsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiYm9iIiwiaWF0IjoxNTIzMjA3OTk4fQ.JMxc3Vwk5ZDmryRqnDN35UUHoaJNGUY7z0lQNr38tjA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \t\"peers\": [\"peer0.bob.coderschool.vn\"],\n\t\"chaincodeName\": \"salmon_supply_chain\",\n\t\"chaincodePath\": \"github.com/hdnha11/salmon_supply_chain\",\n\t\"chaincodeType\": \"golang\",\n\t\"chaincodeVersion\": \"v0\"\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/chaincodes",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"chaincodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Instantiate chaincode on 'transfers'",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"chaincodeName\": \"salmon_supply_chain\",\n\t\"chaincodeVersion\": \"v0\",\n\t\"chaincodeType\": \"golang\",\n\t\"args\": []\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/transfers/chaincodes",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"transfers",
+						"chaincodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Init Ledger",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"peers\": [\"peer0.fredrick.coderschool.vn\"],\n\t\"fcn\": \"initLedger\",\n\t\"args\": []\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/transfers/chaincodes/salmon_supply_chain",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"transfers",
+						"chaincodes",
+						"salmon_supply_chain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change holder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"peers\": [\"peer0.fredrick.coderschool.vn\"],\n\t\"fcn\": \"changeSalmonHolder\",\n\t\"args\": [\"1\", \"Fredrick\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/transfers/chaincodes/salmon_supply_chain",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"transfers",
+						"chaincodes",
+						"salmon_supply_chain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query salmon by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"peers\": [\"peer0.fredrick.coderschool.vn\"],\n  \"fcn\": \"querySalmon\",\n  \"args\": [\"1\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/transfers/chaincodes/salmon_supply_chain?peer=peer0.fredrick.coderschool.vn&fcn=querySalmon&args=[\"1\"]",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"transfers",
+						"chaincodes",
+						"salmon_supply_chain"
+					],
+					"query": [
+						{
+							"key": "peer",
+							"value": "peer0.fredrick.coderschool.vn"
+						},
+						{
+							"key": "fcn",
+							"value": "querySalmon"
+						},
+						{
+							"key": "args",
+							"value": "[\"1\"]"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query all salmons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjM4MTI3OTMsInVzZXJuYW1lIjoidXNlcjEiLCJvcmdOYW1lIjoiZnJlZHJpY2siLCJpYXQiOjE1MjMyMDc5OTN9.QtdbBu74BUVqopjCfcC4KPjxmGa_9kvUfedhMc_0vDQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"peers\": [\"peer0.fredrick.coderschool.vn\"],\n\t\"fcn\": \"querySalmon\",\n\t\"args\": [\"1\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:4000/channels/transfers/chaincodes/salmon_supply_chain?peer=peer0.fredrick.coderschool.vn&fcn=queryAllSalmon&args=[]",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"channels",
+						"transfers",
+						"chaincodes",
+						"salmon_supply_chain"
+					],
+					"query": [
+						{
+							"key": "peer",
+							"value": "peer0.fredrick.coderschool.vn"
+						},
+						{
+							"key": "fcn",
+							"value": "queryAllSalmon"
+						},
+						{
+							"key": "args",
+							"value": "[]"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
