@@ -1,4 +1,8 @@
 {
+  "host": "localhost",
+  "port": "4000",
+  "jwt-expiretime": "36000",
+  "chaincode-src-path": "../chaincode",
   "admins": [
     {
       "username": "admin",

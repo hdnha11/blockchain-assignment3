@@ -93,7 +93,7 @@ channels:
     # this list with the query results of getInstalledChaincodes() and getInstantiatedChaincodes()
     chaincodes:
       # the format follows the "cannonical name" of chaincodes by fabric code
-      - salmon_price_cc:v0
+      - salmon_supply_chain:v0
 
   fredrick-bob:
     # Required. list of orderers designated by the application to use for transactions on this
@@ -150,7 +150,7 @@ channels:
     # this list with the query results of getInstalledChaincodes() and getInstantiatedChaincodes()
     chaincodes:
       # the format follows the "cannonical name" of chaincodes by fabric code
-      - salmon_price_cc:v0
+      - salmon_supply_chain:v0
 
   transfers:
     # Required. list of orderers designated by the application to use for transactions on this
@@ -227,7 +227,7 @@ channels:
     # this list with the query results of getInstalledChaincodes() and getInstantiatedChaincodes()
     chaincodes:
       # the format follows the "cannonical name" of chaincodes by fabric code
-      - salmon_price_cc:v0
+      - salmon_supply_chain:v0
 
 #
 # list of participating organizations in this network
@@ -354,10 +354,10 @@ peers:
 
   peer0.alice.coderschool.vn:
     # this URL is used to send endorsement and query requests
-    url: grpcs://localhost:7051
+    url: grpcs://localhost:8051
 
     # this URL is used to connect the EventHub and registering event listeners
-    eventUrl: grpcs://localhost:7053
+    eventUrl: grpcs://localhost:8053
 
     grpcOptions:
       ssl-target-name-override: peer0.alice.coderschool.vn
@@ -366,10 +366,10 @@ peers:
 
   peer0.bob.coderschool.vn:
     # this URL is used to send endorsement and query requests
-    url: grpcs://localhost:7051
+    url: grpcs://localhost:9051
 
     # this URL is used to connect the EventHub and registering event listeners
-    eventUrl: grpcs://localhost:7053
+    eventUrl: grpcs://localhost:9053
 
     grpcOptions:
       ssl-target-name-override: peer0.bob.coderschool.vn

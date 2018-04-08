@@ -56,8 +56,8 @@ services:
       - ./fabric-ca-server-config.yaml:/etc/hyperledger/fabric-ca-server/fabric-ca-server-config.yaml
     container_name: ca.bob.coderschool.vn
 
-  orderer.example.com:
-    container_name: orderer.example.com
+  orderer.coderschool.vn:
+    container_name: orderer.coderschool.vn
     image: hyperledger/fabric-orderer
     environment:
       - ORDERER_GENERAL_LOGLEVEL=debug
@@ -76,7 +76,7 @@ services:
       - 7050:7050
     volumes:
         - ./channel-artifacts:/etc/hyperledger/configtx
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/:/etc/hyperledger/crypto/orderer
+        - ./crypto-config/ordererOrganizations/coderschool.vn/orderers/orderer.coderschool.vn/:/etc/hyperledger/crypto/orderer
         - ./crypto-config/peerOrganizations/fredrick.coderschool.vn/peers/peer0.fredrick.coderschool.vn/:/etc/hyperledger/crypto/peerFredrick
         - ./crypto-config/peerOrganizations/alice.coderschool.vn/peers/peer0.alice.coderschool.vn/:/etc/hyperledger/crypto/peerAlice
         - ./crypto-config/peerOrganizations/bob.coderschool.vn/peers/peer0.bob.coderschool.vn/:/etc/hyperledger/crypto/peerBob
@@ -96,7 +96,7 @@ services:
     volumes:
         - ./crypto-config/peerOrganizations/fredrick.coderschool.vn/peers/peer0.fredrick.coderschool.vn/:/etc/hyperledger/crypto/peer
     depends_on:
-      - orderer.example.com
+      - orderer.coderschool.vn
 
   peer0.alice.coderschool.vn:
     container_name: peer0.alice.coderschool.vn
@@ -113,7 +113,7 @@ services:
     volumes:
         - ./crypto-config/peerOrganizations/alice.coderschool.vn/peers/peer0.alice.coderschool.vn/:/etc/hyperledger/crypto/peer
     depends_on:
-      - orderer.example.com
+      - orderer.coderschool.vn
 
   peer0.bob.coderschool.vn:
     container_name: peer0.bob.coderschool.vn
@@ -125,9 +125,9 @@ services:
       - CORE_PEER_LOCALMSPID=BobMSP
       - CORE_PEER_ADDRESS=peer0.bob.coderschool.vn:7051
     ports:
-      - 8056:7051
-      - 8058:7053
+      - 9051:7051
+      - 9053:7053
     volumes:
         - ./crypto-config/peerOrganizations/bob.coderschool.vn/peers/peer0.bob.coderschool.vn/:/etc/hyperledger/crypto/peer
     depends_on:
-      - orderer.example.com
+      - orderer.coderschool.vn

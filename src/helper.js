@@ -1,22 +1,18 @@
-'use strict';
-
 const log4js = require('log4js');
-const logger = log4js.getLogger('Helper');
-logger.setLevel('DEBUG');
-
 const path = require('path');
 const util = require('util');
-
 const hfc = require('fabric-client');
-hfc.setLogger(logger);
 
-const getLogger = function(moduleName) {
+const getLogger = moduleName => {
   const logger = log4js.getLogger(moduleName);
   logger.setLevel('DEBUG');
   return logger;
 };
 
-async function getClientForOrg(userorg, username) {
+const logger = getLogger('Helper');
+hfc.setLogger(logger);
+
+const getClientForOrg = async (userorg, username) => {
   logger.debug('getClientForOrg - ****** START %s %s', userorg, username);
   // get a fabric client loaded with a connection profile for this org
   let config = '-connection-profile-path';
@@ -51,9 +47,9 @@ async function getClientForOrg(userorg, username) {
   logger.debug('getClientForOrg - ****** END %s %s \n\n', userorg, username);
 
   return client;
-}
+};
 
-const getRegisteredUser = async function(username, userOrg, isJson) {
+const getRegisteredUser = async (username, userOrg, isJson) => {
   try {
     const client = await getClientForOrg(userOrg);
     logger.debug('Successfully initialized the credential stores');
@@ -83,7 +79,7 @@ const getRegisteredUser = async function(username, userOrg, isJson) {
       );
       logger.debug('Successfully got the secret for user %s', username);
       user = await client.setUserContext({
-        username: username,
+        username,
         password: secret,
       });
       logger.debug(
@@ -109,10 +105,18 @@ const getRegisteredUser = async function(username, userOrg, isJson) {
       username,
       error.toString(),
     );
-    return 'failed ' + error.toString();
+    return 'Failed ' + error.toString();
   }
+};
+
+const setupChaincodeDeploy = () => {
+  process.env.GOPATH = path.join(
+    __dirname,
+    hfc.getConfigSetting('chaincode-src-path'),
+  );
 };
 
 exports.getLogger = getLogger;
 exports.getClientForOrg = getClientForOrg;
 exports.getRegisteredUser = getRegisteredUser;
+exports.setupChaincodeDeploy = setupChaincodeDeploy;
