@@ -90,6 +90,12 @@ Use the NodeJS SDK to build a entrypoint for new clients to interact with the le
 
 ## Development
 
+### Download Platform-specific Binaries
+
+```
+$ curl -sSL https://goo.gl/6wtTN5 | bash -s 1.1.0
+```
+
 ### Generate Artifacts
 
 ```
